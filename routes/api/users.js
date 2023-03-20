@@ -115,5 +115,19 @@ router.get(
     res.json(req.user);
   }
 );
+//@route Get api/Users/logout
+//@desc logout from the app
+//access Private
+router.get(
+  "/logout",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    res.clearCookie();
+    res.json({
+      success: true,
+      message: "You have successfully logged out",
+    });
+  }
+);
 
 module.exports = router;
